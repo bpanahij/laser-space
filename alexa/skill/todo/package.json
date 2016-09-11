@@ -15,6 +15,7 @@
   "author": "Brian P Johnson & Barba Tassa",
   "license": "Apache-2.0",
   "dependencies": {
-    "alexa-sdk": "^1.0.0"
+    "alexa-sdk": "^1.0.0",
+    "twilio": "^2.10.0"
   }
 }

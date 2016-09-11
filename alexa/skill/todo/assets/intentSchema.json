@@ -4,8 +4,8 @@
       "intent": "AddTaskIntent",
       "slots": [
         {
-          "name": "Task",
-          "type": "AMAZON.LITERAL"
+          "name": "TaskDesc",
+          "type": "TASKS"
         }
       ]
     },
@@ -15,6 +15,15 @@
         {
           "name": "TaskNumber",
           "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "SendTasks",
+      "slots": [
+        {
+          "name": "Name",
+          "type": "NAME"
         }
       ]
     },

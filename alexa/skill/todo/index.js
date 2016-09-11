@@ -1,5 +1,9 @@
 'use strict';
 
+var client = require('twilio')(
+	process.env.TWILIO_ACCOUNT_SID = "AC2e37ed5ac82c28425969b4d8b2ed6ced",
+	process.env.TWILIO_AUTH_TOKEN = "e46ad06aa4099c3d92a8bd81ec330f20"
+);
 var Alexa = require('alexa-sdk');
 
 var APP_NAME = 'Meazy Tasks';
@@ -15,7 +19,7 @@ function initializeState() {
 	if (!this.attributes.tasks) {
 		var speechOutput = 'Hey, Welcome to ' + APP_NAME + '. You can add new tasks, complete them, and list them.';
 		var repromptText = 'Would you like to add a new task, complete a task, or list tasks?';
-		this.attributes.tasks = ['Hello world'];
+		this.attributes.tasks = [];
 		this.attributes.completed = [];
 		this.attributes.endedSessionCount = 0;
 		this.handler.state = TASKS;
@@ -23,6 +27,12 @@ function initializeState() {
 	}
 	this.handler.state = TASKS;
 	this.emit(':ask', 'lets go!', 'lets go!');
+}
+
+function taskList(tasks) {
+	return tasks.map(function (task, index) {
+		return (index + 1) + '. ' + task;
+	}).join(', ');
 }
 
 var taskHandler = Alexa.CreateStateHandler(TASKS, {
@@ -54,10 +64,8 @@ var taskHandler = Alexa.CreateStateHandler(TASKS, {
 	},
 	'ListTasksIntent': function () {
 		var tasks = this.attributes.tasks;
-		var taskList = tasks.map(function (task, index) {
-			return (index + 1) + ' ' + task;
-		}).join(', ');
-		this.emit(':ask', 'The tasks are: ' + taskList);
+		var myTaskList = taskList(tasks);
+		this.emit(':ask', 'The tasks are: ' + myTaskList);
 	},
 	'ListCompletedTasksIntent': function () {
 		var tasks = this.attributes.completed;
@@ -83,7 +91,47 @@ var taskHandler = Alexa.CreateStateHandler(TASKS, {
 		var speechOutput = 'Try saying "add task", "complete task", or "list"';
 		this.emit(':ask', speechOutput, speechOutput);
 	},
+	'SendTasks': function () {
+		var intent = this.event.request.intent;
+		var name = intent.slots.Name.value.toLowerCase();
+		if (people[name]) {
+			var tasks = this.attributes.tasks;
+			var myTaskList = taskList(tasks);
+			var number = people[name].phoneNumber;
+			var message = 'sending tasks to ' + name + ' at ' + number;
+			var that = this;
+			SendTwilio(myTaskList, number, function() {
+				that.emit(':ask', message, message);
+			});
+		}
+	}
 });
+
+
+/**
+ * Created by barb on 9/11/16.
+ */
+var people = {
+	brian: {
+		"phoneNumber": "+14153104985",
+		"name": "Brian"
+	},
+	barb: {
+		"phoneNumber": "+14153109259",
+		"name": "Barb"
+	}
+};
+
+
+function SendTwilio(tasks, number, callback) {
+	client.sendMessage({
+		from: process.env.TWILIO_PHONE_NUMBER = "+14154230991",
+		to: process.env.CELL_PHONE_NUMBER = number,
+		body: tasks
+	}, function (err) {
+		callback(err)
+	});
+}
 
 var startHandlers = {
 	'LaunchRequest': function () {

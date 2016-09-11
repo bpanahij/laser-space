@@ -26,4 +26,7 @@ ListCompletedTasksIntent list finished
 ListCompletedTasksIntent list old
 ListCompletedTasksIntent list done
 
+SendTasks send to {Name}
+SendTasks text to {Name}
+
 AMAZON.StartOverIntent start
