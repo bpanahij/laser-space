@@ -1,11 +1,15 @@
-var path = require('path');
-var express = require('express');
+import path from 'path';
+import express from 'express';
+import {router} from './routes/conversation';
 
-var app = express();
+let app = express();
 
-var staticPath = path.join(__dirname, '/dist');
+let staticPath = path.join(__dirname, '/dist');
 app.use(express.static(staticPath));
 
-app.listen(80, function() {
-  console.log('web-crm-frontend is listening');
+app.use('/conversation', router);
+
+app.listen(3000, () => {
+	
+	console.log('laser is listening');
 });

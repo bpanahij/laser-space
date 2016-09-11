@@ -1,6 +1,5 @@
 import React from 'react'
 import {DevTools} from '../../utils/DevTools'
-import {PremierAgentNav} from '../PremierAgentNav'
 
 /**
  * @param children
@@ -10,7 +9,6 @@ import {PremierAgentNav} from '../PremierAgentNav'
 export const Window = ({children}) => {
   return (
     <div className="">
-      <PremierAgentNav/>
       <div className="">
         {children}
       </div>

@@ -1,0 +1,11 @@
+.idea
+node_modules
+settings.json
+*.git
+*.csr
+*.key
+*.pem
+*.key.orig
+*.key.org
+*.crt
+*.log

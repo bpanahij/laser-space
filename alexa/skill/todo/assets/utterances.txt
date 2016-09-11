@@ -1,0 +1,29 @@
+AddTaskIntent add task {Task}
+AddTaskIntent add {Task}
+AddTaskIntent you need to {Task}
+AddTaskIntent please {Task}
+AddTaskIntent can you {Task}
+AddTaskIntent get off the couch and {Task}
+AddTaskIntent don't be lazy {Task}
+
+CompleteTaskIntent complete {TaskNumber}
+CompleteTaskIntent finish {TaskNumber}
+CompleteTaskIntent finished {TaskNumber}
+CompleteTaskIntent done with {TaskNumber}
+CompleteTaskIntent check off {TaskNumber}
+
+ListTasksIntent list tasks
+ListTasksIntent list
+ListTasksIntent list todos
+ListTasksIntent todos
+ListTasksIntent tasks
+ListTasksIntent list task items
+ListTasksIntent what needs to be done
+
+ListCompletedTasksIntent list completed tasks
+ListCompletedTasksIntent completed tasks
+ListCompletedTasksIntent list finished
+ListCompletedTasksIntent list old
+ListCompletedTasksIntent list done
+
+AMAZON.StartOverIntent start

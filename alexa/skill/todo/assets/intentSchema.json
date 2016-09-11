@@ -1,0 +1,49 @@
+{
+  "intents": [
+    {
+      "intent": "AddTaskIntent",
+      "slots": [
+        {
+          "name": "Task",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "CompleteTaskIntent",
+      "slots": [
+        {
+          "name": "TaskNumber",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "ListTasksIntent"
+    },
+    {
+      "intent": "ListCompletedTasksIntent"
+    },
+    {
+      "intent": "AMAZON.StartOverIntent"
+    },
+    {
+      "intent": "AMAZON.RepeatIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}
