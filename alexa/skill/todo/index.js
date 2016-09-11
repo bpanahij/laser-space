@@ -98,7 +98,7 @@ var taskHandler = Alexa.CreateStateHandler(TASKS, {
 			var tasks = this.attributes.tasks;
 			var myTaskList = taskList(tasks);
 			var number = people[name].phoneNumber;
-			var message = 'sending tasks to ' + name + ' at ' + number;
+			var message = 'sending tasks to ' + name;
 			var that = this;
 			SendTwilio(myTaskList, number, function() {
 				that.emit(':ask', message, message);
